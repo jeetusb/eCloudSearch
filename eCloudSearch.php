@@ -10,7 +10,7 @@ require 'eCloudSearchHTTP.php';
 class eCloudSearch extends eCloudSearchHTTP {
 	
 	private $documents = array();
-	
+	private $json_documents = array();
 	public function __construct() {
 	}
 	
@@ -46,7 +46,15 @@ class eCloudSearch extends eCloudSearchHTTP {
 		}
 		
 		foreach($this->documents as $document_object) {
-			echo json_encode($document_object);
+			
+			$json_obj->type = 'add';
+			$json_obj->id = $document_object->get_id();
+			$json_obj->version = $document_object->get_version();
+			$json_obj->fields = $document_object->get_fields();
+			
+			echo json_encode($json_obj);
+//			$this->json_documents[] = $json_obj;
+			
 		}
 		
 	}

@@ -15,10 +15,10 @@ class eCloudSearchDocument {
 	}
 	
 	public function set_version($version) {
-		
+		$this->version = $version;
 	}
 	
-	public function field($field, $data) {
+	public function set_field($field, $data) {
 		$this->fields[$field] = $data;
 	}
 		
