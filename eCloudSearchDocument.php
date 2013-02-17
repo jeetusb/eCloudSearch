@@ -2,25 +2,38 @@
 
 class eCloudSearchDocument {
 	
-	public function construct() {
+	private $fields = array();
+	private $id = null;
+	private $version = null;
+	
+	public function __construct() {
 		
 	}
 	
-	public function id($id) {
+	public function set_id($id) {
+		$this->id = $id;
+	}
+	
+	public function set_version($version) {
 		
 	}
 	
-	public function version($version) {
+	public function field($field, $data) {
+		$this->fields[$field] = $data;
+	}
 		
+	public function get_id() {
+		return $this->id;
 	}
 	
-	public function add() {
-		
+	public function get_version() {
+		return $this->version;
 	}
 	
-	public function delete() {
-		
+	public function get_fields() {
+		return $this->fields;
 	}
+	
 }
 
 ?>
