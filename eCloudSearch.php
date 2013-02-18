@@ -13,9 +13,19 @@ class eCloudSearch extends eCloudSearchHTTP {
 	private $json_documents = array();
 	
 	public function __construct() {
-//		if(!function_exists('http_post_fields')) {
-//			throw new Exception('PECL_HTTP must be installed to use this library.');
-//		}
+		if(!function_exists('curl_init')) {
+			throw new Exception('CURL must be installed to use this library.');
+		}
+	}
+	
+	public function find($text, $fields=null, $start=null, $limit=null) {
+
+		if(strlen($text) == 0) {
+			throw new Exception('Blank searchs are not allowed.');
+		}
+		
+		return $this->get_search($text, $fields, $start, $limit);
+		
 	}
 	
 	public function add_document($obj) {
@@ -53,7 +63,7 @@ class eCloudSearch extends eCloudSearchHTTP {
 			
 			$json_obj->type = 'add';
 			$json_obj->id = $document_object->get_id();
-//			$json_obj->lang = $document_object->get_lang();
+			$json_obj->lang = $document_object->get_lang();
 			$json_obj->version = $document_object->get_version();
 			$json_obj->fields = $document_object->get_fields();
 			
