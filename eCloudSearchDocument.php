@@ -5,6 +5,7 @@ class eCloudSearchDocument {
 	private $fields = array();
 	private $id = null;
 	private $version = null;
+	private $lang = 'en';
 	
 	public function __construct() {
 		
@@ -28,6 +29,13 @@ class eCloudSearchDocument {
 		
 	}
 		
+	public function set_lang($lang) {
+		$this->lang = $lang;
+	}
+	
+	public function get_lang($lang) {
+		return $this->lang;
+	}
 	public function get_id() {
 		return $this->id;
 	}

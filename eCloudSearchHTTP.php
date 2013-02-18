@@ -30,16 +30,20 @@ class eCloudSearchHTTP {
 		file_put_contents($file, json_encode($post));
 
 
-		$headers  =  array( "Content-Type: application/json" );
+		$headers = array( "Content-Type: application/json" );
 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, 'http://'.$this->get_document_endpoint().'/2011-02-01/documents/batch');
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-   		curl_setopt($ch, CURLOPT_POSTFIELDS,
-               array('sampfile'=>json_encode($post),
-                     'filename'=>"data.sdf"));
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POST, TRUE);
+		
+		//
+		
+//		$data = 'name=' . urlencode($value);
+   		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
+curl_setopt($ch, CURLOPT_VERBOSE, 1); 
+               		
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		$postResult = curl_exec($ch);
 		curl_close($ch);
 		echo "$postResult";
