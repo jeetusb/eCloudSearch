@@ -19,7 +19,13 @@ class eCloudSearchDocument {
 	}
 	
 	public function set_field($field, $data) {
-		$this->fields[$field] = $data;
+		
+		if(is_array($data) || is_string($data)) {
+			$this->fields[$field] = $data;	
+		} else {
+			throw new Exception('Field types for eCouldSearchDocument must be text or an array.');
+		}
+		
 	}
 		
 	public function get_id() {

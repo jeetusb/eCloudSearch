@@ -11,7 +11,11 @@ class eCloudSearch extends eCloudSearchHTTP {
 	
 	private $documents = array();
 	private $json_documents = array();
+	
 	public function __construct() {
+//		if(!function_exists('http_post_fields')) {
+//			throw new Exception('PECL_HTTP must be installed to use this library.');
+//		}
 	}
 	
 	public function add_document($obj) {
@@ -52,8 +56,8 @@ class eCloudSearch extends eCloudSearchHTTP {
 			$json_obj->version = $document_object->get_version();
 			$json_obj->fields = $document_object->get_fields();
 			
-			echo json_encode($json_obj);
-//			$this->json_documents[] = $json_obj;
+			$this->json_documents[] = $json_obj;
+			$this->post($this->json_documents);	
 			
 		}
 		
