@@ -33,7 +33,7 @@ class eCloudSearchDocument {
 		$this->lang = $lang;
 	}
 	
-	public function get_lang($lang) {
+	public function get_lang() {
 		return $this->lang;
 	}
 	public function get_id() {

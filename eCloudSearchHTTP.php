@@ -24,7 +24,7 @@ class eCloudSearchHTTP {
 		return $this->search_endpoint;
 	}
 
-	public function post($post) {
+	public function post_batch($post) {
 
 		$file = tempnam(sys_get_temp_dir(), 'POST');
 		file_put_contents($file, json_encode($post));
@@ -36,17 +36,16 @@ class eCloudSearchHTTP {
 		curl_setopt($ch, CURLOPT_URL, 'http://'.$this->get_document_endpoint().'/2011-02-01/documents/batch');
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_POST, TRUE);
-		
-		//
-		
-//		$data = 'name=' . urlencode($value);
    		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
-curl_setopt($ch, CURLOPT_VERBOSE, 1); 
-               		
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		$postResult = curl_exec($ch);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$result = curl_exec($ch);
 		curl_close($ch);
-		echo "$postResult";
+
+		$result_decoded = json_decode($result);
+		if($result_decoded->status == 'error') {
+			throw new Exception('Could not post batch.');
+		}
+		
 	}
 
 }

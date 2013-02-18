@@ -53,7 +53,7 @@ class eCloudSearch extends eCloudSearchHTTP {
 			
 			$json_obj->type = 'add';
 			$json_obj->id = $document_object->get_id();
-			$json_obj->lang = $document_object->get_lang();
+//			$json_obj->lang = $document_object->get_lang();
 			$json_obj->version = $document_object->get_version();
 			$json_obj->fields = $document_object->get_fields();
 			
@@ -63,7 +63,7 @@ class eCloudSearch extends eCloudSearchHTTP {
 			
 		}
 		
-		$this->post($this->json_documents);
+		$this->post_batch($this->json_documents);
 		
 	}
 	
