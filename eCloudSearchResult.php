@@ -43,7 +43,7 @@ class eCloudSearchResult {
 	public function result() {
 		if($this->num_rows > 1) {
 
-			return $this->results->hits->hit;
+			return $this->results;
 			
 		} elseif($this->num_rows == 1) {
 			return array($this->row());

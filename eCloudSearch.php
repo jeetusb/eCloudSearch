@@ -11,7 +11,7 @@ require 'eCloudSearchResult.php';
 class eCloudSearch extends eCloudSearchHTTP {
 	
 	private $documents = array();
-	private $json_documents = array();
+//	private $json_documents = new stdClass();
 	
 	public function __construct() {
 		if(!function_exists('curl_init')) {
@@ -25,8 +25,8 @@ class eCloudSearch extends eCloudSearchHTTP {
 			throw new Exception('Blank searchs are not allowed.');
 		}
 		
-		return $this->get_search($text, $fields, $start, $limit);
-		
+		$result = $this->get_search($text, $fields, $start, $limit);
+		return new eCloudSearchResult($result);
 	}
 	
 	public function add_document($obj) {
@@ -75,6 +75,8 @@ class eCloudSearch extends eCloudSearchHTTP {
 		}
 		
 		$this->post_batch($this->json_documents);
+		$this->json_documents = array();
+		$this->documents = array();
 		
 	}
 	

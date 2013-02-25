@@ -61,12 +61,6 @@ class eCloudSearchHTTP {
 		}
 		
 		return json_decode($result);
-
-//		if($result_decoded->status == 'error') {
-//			throw new Exception('Could not post batch.');
-//		} elseif($result_decoded->status == 'success') {
-//			return $result_decoded;
-//		}
 		
 	}
 	
@@ -78,7 +72,7 @@ class eCloudSearchHTTP {
 		curl_setopt($ch, CURLOPT_URL, 'http://'.$this->get_document_endpoint().'/2011-02-01/documents/batch');
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_POST, TRUE);
-   		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
+   		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(array_values($post)));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		$result = curl_exec($ch);
 		
