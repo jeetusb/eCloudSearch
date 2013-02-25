@@ -74,7 +74,14 @@ class eCloudSearchHTTP {
    		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		$result = curl_exec($ch);
+		
+		
+		$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		
 		curl_close($ch);
+		if($http_status != 200) {
+			throw new Exception('Could not post document');
+		}
 
 		$result_decoded = json_decode($result);
 		if($result_decoded->status == 'error') {
