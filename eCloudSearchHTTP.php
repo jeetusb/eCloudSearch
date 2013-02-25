@@ -51,8 +51,15 @@ class eCloudSearchHTTP {
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		$result = curl_exec($ch);
+		$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		
 		curl_close($ch);
-
+		
+		
+		if($http_status != 200) {
+			throw new Exception('CloudSearch failed.');
+		}
+		
 		return json_decode($result);
 
 //		if($result_decoded->status == 'error') {
@@ -80,7 +87,7 @@ class eCloudSearchHTTP {
 		
 		curl_close($ch);
 		if($http_status != 200) {
-			throw new Exception('Could not post document');
+			throw new Exception('Could not post CloudSearch document.');
 		}
 
 		$result_decoded = json_decode($result);
