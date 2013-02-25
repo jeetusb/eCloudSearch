@@ -57,7 +57,7 @@ class eCloudSearchHTTP {
 		
 		
 		if($http_status != 200) {
-			throw new Exception('CloudSearch failed.');
+			throw new Exception('CloudSearch failed. Returning '.$http_status);
 		}
 		
 		return json_decode($result);
@@ -87,7 +87,7 @@ class eCloudSearchHTTP {
 		
 		curl_close($ch);
 		if($http_status != 200) {
-			throw new Exception('Could not post CloudSearch document.');
+			throw new Exception('Could not post CloudSearch document. Returning '.$http_status);
 		}
 
 		$result_decoded = json_decode($result);
