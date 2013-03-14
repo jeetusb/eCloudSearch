@@ -1,14 +1,14 @@
-<?php 
+<?php
 
 class eCloudSearchResult {
-	
+
 	private $num_rows;
-	
+
 	public function __construct($results_obj) {
 		$this->num_rows = $results_obj->hits->found;
 		$this->results = $results_obj->hits->hit;
 	}
-	
+
 	/**
 	 *
 	 * Returns the number of rows
@@ -18,8 +18,8 @@ class eCloudSearchResult {
 	public function num_rows() {
 		return $this->num_rows;
 	}
-	
-	
+
+
 	/**
 	 *
 	 * Returns a simple object with the first row of data.
@@ -29,13 +29,13 @@ class eCloudSearchResult {
 
 		if($this->num_rows > 0) {
 
-		return $this->results->hits->hit[0];
-		
+		return $this->results[0];
+
 		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Iterates through the results and returns an array of objects.
 	 * @return array
@@ -44,14 +44,14 @@ class eCloudSearchResult {
 		if($this->num_rows > 1) {
 
 			return $this->results;
-			
+
 		} elseif($this->num_rows == 1) {
 			return array($this->row());
 		} else {
 			return array();
 		}
 	}
-	
-	
+
+
 }
 ?>
