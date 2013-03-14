@@ -64,7 +64,10 @@ Deleting Documents
 		$ecs = new eCloudSearch();
 		$ecs->set_search_endpoint('search-end-point.com');
 		$ecs->set_document_endpoint('doc-endpoint.com');
+		// Deletes can be batched.
 		$ecs->delete($id, $version);
+		$ecs->delete($id2, $version2);
+		$ecs->save();
 
 	} catch (Exception $e) {
 		echo $e->getMessage();
