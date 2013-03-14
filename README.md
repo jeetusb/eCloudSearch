@@ -31,7 +31,7 @@ Search
 Adding documents
 =====
 
-try {
+	try {
 		$ecs = new eCloudSearch();
 		$ecs->set_search_endpoint('search-end-point.com');
 		$ecs->set_document_endpoint('doc-endpoint.com');
@@ -52,21 +52,21 @@ try {
 
 		$ecs->save();
 
-} catch (Exception $e) {
+	} catch (Exception $e) {
 	echo $e->getMessage();
-}
+	}
 
 =====
 Deleting Documents
 =====
 
-try {
+	try {
 		$ecs = new eCloudSearch();
 		$ecs->set_search_endpoint('search-end-point.com');
 		$ecs->set_document_endpoint('doc-endpoint.com');
 		$ecs->delete($id, $version);
 
-} catch (Exception $e) {
-	echo $e->getMessage();
-}
+	} catch (Exception $e) {
+		echo $e->getMessage();
+	}
 
