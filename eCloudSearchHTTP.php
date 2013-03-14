@@ -9,11 +9,13 @@ class eCloudSearchHTTP {
 	public function set_document_endpoint($url) {
 
 		$this->document_endpoint = $url;
+		return $this;
 
 	}
 
 	public function set_search_endpoint($url) {
 		$this->search_endpoint = $url;
+		return $this;
 	}
 
 	public function get_document_endpoint() {
