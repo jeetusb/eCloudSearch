@@ -44,6 +44,7 @@ class eCloudSearch extends eCloudSearchHTTP {
 		}
 
 		$this->documents[] = $obj;
+		return $this;
 	}
 
 
@@ -62,7 +63,7 @@ class eCloudSearch extends eCloudSearchHTTP {
 		$json_obj->version = $version;
 
 		$this->json_documents[] = $json_obj;
-
+		return $this;
 	}
 
 	public function save() {
@@ -90,7 +91,7 @@ class eCloudSearch extends eCloudSearchHTTP {
 
 		}
 
-		$this->post_batch($this->json_documents);
+		return $this->post_batch($this->json_documents);
 		$this->json_documents = array();
 		$this->documents = array();
 
