@@ -57,3 +57,16 @@ try {
 }
 
 =====
+Deleting Documents
+=====
+
+try {
+		$ecs = new eCloudSearch();
+		$ecs->set_search_endpoint('search-end-point.com');
+		$ecs->set_document_endpoint('doc-endpoint.com');
+		$ecs->delete($id, $version);
+
+} catch (Exception $e) {
+	echo $e->getMessage();
+}
+

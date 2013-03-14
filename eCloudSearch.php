@@ -30,6 +30,7 @@ class eCloudSearch extends eCloudSearchHTTP {
 	}
 
 	public function add_document($obj) {
+
 		if(!$obj instanceof eCloudSearchDocument) {
 			throw new Exception('Document must be an eCloudSearchDocument object.');
 		}
@@ -46,7 +47,21 @@ class eCloudSearch extends eCloudSearchHTTP {
 	}
 
 
-	public function delete($id) {
+	public function delete($id, $version) {
+
+		if(!is_numeric($version) || is_null($version)) {
+			throw new Exception('Document versions must be numeric.');
+		}
+
+		if(is_null($id)) {
+			throw new Exception('You must specify a key for the document you want to delete.');
+		}
+
+		$json_obj = new stdClass();
+		$json_obj->type = 'delete';
+		$json_obj->version = $version;
+
+		$this->json_documents[] = $json_obj;
 
 	}
 
@@ -62,6 +77,7 @@ class eCloudSearch extends eCloudSearchHTTP {
 
 		foreach($this->documents as $document_object) {
 
+			$json_obj = new stdClass();
 			$json_obj->type = 'add';
 			$json_obj->id = $document_object->get_id();
 			$json_obj->lang = $document_object->get_lang();
