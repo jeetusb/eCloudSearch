@@ -43,14 +43,12 @@ Adding documents
 
 		$ecs->add_document($document);
 
+		// You can add multiple documents, and chain commands.
 		$document = new eCloudSearchDocument();
-		$document->set_id( md5(rand()));
-		$document->set_version(1);
-		$document->set_field('customer', 'example2');
+		$document->set_id( md5(rand()))->set_version(1)->set_field('customer', 'example2');
 
-		$ecs->add_document($document);
+		$ecs->add_document($document)->save();
 
-		$ecs->save();
 
 	} catch (Exception $e) {
 	echo $e->getMessage();
