@@ -6,7 +6,28 @@ class eCloudSearchResult {
 
 	public function __construct($results_obj) {
 		$this->num_rows = $results_obj->hits->found;
+
+		foreach($results_obj->hits->hit as $value) {
+
+			foreach($value->data as $name => $data) {
+
+				if(sizeof($data) == 1) {
+				$value->{$name} = $data[0];
+				} elseif(sizeof($data) > 1) {
+				$value->{$name} = $data;
+				} else {
+				$value->{$name} = null;
+				}
+
+			}
+			unset($value->data);
+
+		}
+
 		$this->results = $results_obj->hits->hit;
+
+
+
 	}
 
 	/**
