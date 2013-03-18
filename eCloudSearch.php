@@ -25,6 +25,10 @@ class eCloudSearch extends eCloudSearchHTTP {
 			throw new Exception('Blank searchs are not allowed.');
 		}
 
+		if(!is_array($fields)) {
+			throw new Exception('You must specify which index fields to return');
+		}
+
 		$result = $this->get_search($text, $fields, $start, $limit);
 		return new eCloudSearchResult($result);
 	}
