@@ -36,7 +36,7 @@ class eCloudSearch extends eCloudSearchHTTP {
 		}
 
 		if($obj->get_id() == null) {
-			throw new Exception('eCloudSearchDocument must have an id before adding.');
+			throw new Exception('eCloudSearchDocument must have an id.');
 		}
 
 		if($obj->get_version() == null) {
@@ -59,12 +59,11 @@ class eCloudSearch extends eCloudSearchHTTP {
 		}
 
 
-		$json_obj = new stdClass();
-		$json_obj->id = $id;
-		$json_obj->type = 'delete';
-		$json_obj->version = $version;
+		$doc = new eCloudSearchDocument();
+		$doc->set_id($id);
+		$doc->set_type('delete');
+		$this->add_document($doc);
 
-		$this->documents[] = $json_obj;
 		return $this;
 	}
 

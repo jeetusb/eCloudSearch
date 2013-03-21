@@ -6,6 +6,7 @@ class eCloudSearchDocument {
 	private $id = null;
 	private $version = null;
 	private $lang = 'en';
+	private $type = 'add';
 
 	public function __construct() {
 
@@ -51,6 +52,22 @@ class eCloudSearchDocument {
 	public function get_fields() {
 		return $this->fields;
 	}
+
+	/**
+		 * @return the $type
+		 */
+	public function get_type() {
+		return $this->type;
+	}
+
+	/**
+		 * @param field_type $type
+		 */
+	public function set_type($type) {
+		$this->type = $type;
+	}
+
+
 
 }
 
