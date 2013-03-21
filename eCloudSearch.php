@@ -60,6 +60,7 @@ class eCloudSearch extends eCloudSearchHTTP {
 
 
 		$json_obj = new stdClass();
+		$json_obj->id = $id;
 		$json_obj->type = 'delete';
 		$json_obj->version = $version;
 
