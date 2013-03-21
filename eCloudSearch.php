@@ -7,6 +7,7 @@
 
 require 'eCloudSearchHTTP.php';
 require 'eCloudSearchResult.php';
+require 'eCloudSearchDocument.php';
 
 class eCloudSearch extends eCloudSearchHTTP {
 
