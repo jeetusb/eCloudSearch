@@ -85,11 +85,10 @@ class eCloudSearch extends eCloudSearchHTTP {
 			$json_obj = new stdClass();
 			$json_obj->type = $document_object->get_type();
 			$json_obj->id = $document_object->get_id();
-			$json_obj->lang = $document_object->get_lang();
 			$json_obj->version = $document_object->get_version();
 			if($document_object->get_type() == 'add') {
-
-			$json_obj->fields = $document_object->get_fields();
+				$json_obj->lang = $document_object->get_lang();
+				$json_obj->fields = $document_object->get_fields();
 			}
 
 			$this->json_documents[] = $json_obj;
