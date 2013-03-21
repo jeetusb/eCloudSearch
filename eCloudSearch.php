@@ -12,7 +12,6 @@ require 'eCloudSearchDocument.php';
 class eCloudSearch extends eCloudSearchHTTP {
 
 	private $documents = array();
-//	private $json_documents = new stdClass();
 
 	public function __construct() {
 		if(!function_exists('curl_init')) {
@@ -98,9 +97,9 @@ class eCloudSearch extends eCloudSearchHTTP {
 
 		}
 
-		return $this->post_batch($this->json_documents);
-		$this->json_documents = array();
 		$this->documents = array();
+		return $this->post_batch($this->json_documents);
+
 
 	}
 
