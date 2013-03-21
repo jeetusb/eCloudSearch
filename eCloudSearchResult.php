@@ -3,20 +3,21 @@
 class eCloudSearchResult {
 
 	private $num_rows;
+	private $results;
 
 	public function __construct($results_obj) {
 		$this->num_rows = $results_obj->hits->found;
 
-		foreach($results_obj->hits->hit as $value) {
+		foreach($results_obj->hits->hit as &$value) {
 
 			foreach($value->data as $name => $data) {
 
 				if(sizeof($data) == 1) {
-				$value->{$name} = $data[0];
+					$value->{$name} = $data[0];
 				} elseif(sizeof($data) > 1) {
-				$value->{$name} = $data;
+					$value->{$name} = $data;
 				} else {
-				$value->{$name} = null;
+					$value->{$name} = null;
 				}
 
 			}
@@ -25,9 +26,6 @@ class eCloudSearchResult {
 		}
 
 		$this->results = $results_obj->hits->hit;
-
-
-
 	}
 
 	/**

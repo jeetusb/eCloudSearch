@@ -25,10 +25,6 @@ class eCloudSearch extends eCloudSearchHTTP {
 			throw new Exception('Blank searchs are not allowed.');
 		}
 
-		if(!is_array($fields)) {
-			throw new Exception('You must specify which index fields to return');
-		}
-
 		$result = $this->get_search($text, $fields, $start, $limit);
 		return new eCloudSearchResult($result);
 	}
@@ -62,11 +58,12 @@ class eCloudSearch extends eCloudSearchHTTP {
 			throw new Exception('You must specify a key for the document you want to delete.');
 		}
 
+
 		$json_obj = new stdClass();
 		$json_obj->type = 'delete';
 		$json_obj->version = $version;
 
-		$this->json_documents[] = $json_obj;
+		$this->documents[] = $json_obj;
 		return $this;
 	}
 

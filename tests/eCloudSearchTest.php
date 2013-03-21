@@ -19,10 +19,20 @@ class eCloudSearchTest extends PHPUnit_Framework_TestCase
     }
 
 
-    function testfind() {
+    function testSave() {
+
+
+
+    }
+
+
+    function testFind() {
 
     	$results = $this->ecs->find('nt7e20cd', array('part_number'));
+
     	$this->assertInstanceOf('eCloudSearchResult', $results);
+		$this->assertObjectHasAttribute('part_number', $results->row());
+
 
     }
 
