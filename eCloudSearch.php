@@ -63,6 +63,8 @@ class eCloudSearch extends eCloudSearchHTTP {
 		$doc = new eCloudSearchDocument();
 		$doc->set_id($id);
 		$doc->set_type('delete');
+		$doc->set_version($version);
+
 
 		$this->documents[] = $doc;
 
