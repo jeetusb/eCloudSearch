@@ -29,7 +29,7 @@ class eCloudSearchHTTP {
 	public function get_search($text, $fields=null, $start=null, $limit=null, $rank=null) {
 
 
-		$query = $text;
+		$query = htmlentities($text);
 
 		if(!is_null($fields)) {
 			if(is_array($fields)) {
