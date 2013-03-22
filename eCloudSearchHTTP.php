@@ -26,7 +26,7 @@ class eCloudSearchHTTP {
 		return $this->search_endpoint;
 	}
 
-	public function get_search($text, $fields=null, $start=null, $limit=null) {
+	public function get_search($text, $fields=null, $start=null, $limit=null, $rank=null) {
 
 
 		$query = $text;
@@ -45,6 +45,10 @@ class eCloudSearchHTTP {
 
 		if(!is_null($limit)) {
 			$query .= '&size='.$limit;
+		}
+
+		if(!is_null($rank)) {
+			$query .= '&rank='.$rank;
 		}
 
 		$headers = array( "Content-Type: application/json" );
