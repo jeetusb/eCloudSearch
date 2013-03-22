@@ -19,7 +19,7 @@ class eCloudSearch extends eCloudSearchHTTP {
 		}
 	}
 
-	public function find($text, $fields=null, $start=null, $limit=null) {
+	public function find($text, $fields=null, $start=null, $limit=null, $rank=null) {
 
 		if(strlen($text) == 0) {
 			throw new Exception('Blank searchs are not allowed.');
