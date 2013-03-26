@@ -87,8 +87,14 @@ class eCloudSearchHTTP {
 
 		curl_close($ch);
 
-		if(($http_status != 200 || $http_status != 100)) {
+		switch($http_status) {
+			case 400:
+			case 403:
+			case 404:
+			case 500:
+			case 503:
 			throw new Exception('Could not post CloudSearch document. Returning '.$http_status);
+			break;
 		}
 
 		$result_decoded = json_decode($result);
