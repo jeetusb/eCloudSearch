@@ -87,7 +87,7 @@ class eCloudSearchHTTP {
 
 		curl_close($ch);
 
-		if($http_status != 200) {
+		if($http_status != 200 || $http_status != 100) {
 			throw new Exception('Could not post CloudSearch document. Returning '.$http_status);
 		}
 
