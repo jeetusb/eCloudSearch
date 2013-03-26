@@ -24,7 +24,7 @@ class eCloudSearchDocument {
 
 	public function set_field($field, $data) {
 
-		if(is_array($data) || is_string($data)) {
+		if(is_array($data) || is_string($data) || is_null($data)) {
 			$this->fields[$field] = $data;
 			return $this;
 		} else {
