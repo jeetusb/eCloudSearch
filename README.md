@@ -16,12 +16,9 @@ Search
 
 
 		$results = $ecs->find('example*', array('customer'));
-		if($results->hits->found > 0) {
-			foreach($results->hits->hit as $hit) {
-				echo $hit->id."\n";
-				echo $hit->data->customer[0]."\n";
+			foreach($results->result() as $document) {
+				echo $document->customer;
 			}
-		}
 
 	} catch (Exception $e) {
 		echo $e->getMessage();
