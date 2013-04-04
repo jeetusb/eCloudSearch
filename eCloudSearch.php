@@ -5,9 +5,9 @@
  * @author Bryan Henry
  */
 
-require 'eCloudSearchHTTP.php';
-require 'eCloudSearchResult.php';
-require 'eCloudSearchDocument.php';
+require_once 'eCloudSearchHTTP.php';
+require_once 'eCloudSearchResult.php';
+require_once 'eCloudSearchDocument.php';
 
 class eCloudSearch extends eCloudSearchHTTP {
 
