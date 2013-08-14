@@ -26,7 +26,7 @@ class eCloudSearchHTTP {
 		return $this->search_endpoint;
 	}
 
-	public function get_search($text, $fields=null, $start=null, $limit=null, $rank=null) {
+	public function get_search($text, $fields=null, $start=null, $limit=null, $rank=null,$isBooleanSearch=false) {
 
 
 		$query = urlencode($text);
@@ -51,9 +51,11 @@ class eCloudSearchHTTP {
 			$query .= '&rank='.$rank;
 		}
 
+                $searchParameter = ($isBooleanSearch) ? 'bq' : 'q';
+
 		$headers = array( "Content-Type: application/json" );
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, 'http://'.$this->get_document_endpoint().'/2011-02-01/search?q='.$query);
+		curl_setopt($ch, CURLOPT_URL, 'http://'.$this->get_document_endpoint().'/2011-02-01/search?'.$searchParameter.'='.$query);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		$result = curl_exec($ch);
