@@ -24,6 +24,28 @@ Search
 		echo $e->getMessage();
 	}
 
+====
+Advance Search
+====
+
+    $ecs = new Amazon_CloudSearch_CloudSearch();
+    $ecs->set_search_endpoint('search-end-point.com');
+    $ecs->set_document_endpoint('doc-endpoint.com');
+
+
+    /**
+     * find age between 10 to 20
+     * sorting result on age by passing 5th parameter as age
+     */
+    $results = $ecs->find('age:10..15', array('age'), null, null, 'age', true);
+
+    foreach ($results->result() as $document) {
+     
+
+        echo $document->age;
+        echo "<br/>";
+    }
+
 =====
 Adding documents
 =====
@@ -37,6 +59,7 @@ Adding documents
 		$document->set_id( md5(rand()));
 		$document->set_version(1);
 		$document->set_field('customer', 'example1');
+                $document->set_field('age', '10');
 
 		$ecs->add_document($document);
 
